@@ -17,4 +17,23 @@ defmodule MyList do
 
   def no_acc_sum([]), do: 0
   def no_acc_sum([head | tail]), do: head + no_acc_sum(tail)
+
+  def reduce([], value, _), do: value
+  def reduce([head | tail], value, fun) do
+    reduce(tail, fun.(head, value), fun)
+  end
+
+  def mapsum([], _fun), do: 0
+  def mapsum([head | tail], fun), do: fun.(head) + mapsum(tail, fun)
+
+  def max(list), do: _max(list, 0)
+  def _max([], n), do: n
+  def _max([head | tail], acc) when head >= acc, do: _max(tail, head)
+  def _max([head | tail], acc) when head < acc, do: _max(tail, acc)
+
+  def caeser(chars, 0), do: chars
+  def caeser(chars, shift), do: _caeser(chars, shift)
+  def _caeser([head | tail], shift) when [head + shift] > 'z' do
+
+  end
 end
